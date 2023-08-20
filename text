@@ -69,3 +69,342 @@
                     //       label: label,
                     //     );
                     //   }
+
+
+
+
+               
+               
+               
+ // type: BottomNavigationBarType.fixed,
+                // elevation: 20,
+                // backgroundColor: appbar,
+                // // fixedColor: appbar,
+                // selectedItemColor: white,
+                // iconSize: 26,
+                // unselectedItemColor: boxcolorfill,
+                // currentIndex: controller.tabIndex,
+                // onTap: controller.changeTabIndex,
+                // items:[
+                //   _bottamSheetItem(Icons.home_rounded,'Home'),
+                //   _bottamSheetItem(Icons.widgets_outlined,'Categories'),
+                //   _bottamSheetItem(Icons.favorite,'Wishlist'),
+                //   _bottamSheetItem(Icons.person,'Account'),
+                      
+                // ]
+
+                // _bottamSheetItem(IconData icon,String label){
+// return BottomNavigationBarItem(icon: Icon(icon),label: label);
+// }
+
+
+// collecctionrefer product= firebasefiirestore.instance.collection(users).docs(wishlist);.
+// CSSMathProduct.add();
+
+
+
+//wishlist//
+
+// import 'package:bag_bliss/src/model/wishlist_models.dart';
+// import 'package:bag_bliss/src/view/details/product_details.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import '../../../../core/colors.dart';
+// import '../../../controller/wishlist_controller.dart';
+// final WishListController wishlistController = Get.put(WishListController());
+
+// class ProductCard extends StatelessWidget {
+//   const ProductCard({
+//     super.key,
+//     required this.height,
+//     required this.width,
+//     required this.itemName,
+//     required this.itemImage,
+//     required this.price,
+//     required this.id,
+//   });
+
+//   final double height;
+//   final double width;
+//   final String itemName;
+//   final String itemImage;
+//   final String price;
+//   final String id;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       // crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Material(
+//           elevation: 50,
+//           child: InkWell(
+//             onTap: () {
+//               Get.to(const ProductDetails());
+//             },
+//             child: Container(
+//               // height: height*0.27,
+//               width: width*0.4,
+//               color: white,
+//               child: Column(
+//                 children: [
+//                   Stack(
+//                     children:[ Container(
+//                     height: height*0.21,
+//                     width: width*0.35,
+//                     // color: black,
+//                     decoration:  BoxDecoration(
+//                       image: DecorationImage(image: NetworkImage(itemImage),
+//                       fit: BoxFit.cover)
+//                     ),
+//                     ),
+
+//                      Positioned(
+//                       right: 2,
+//                        child: IconButton(onPressed: () {
+//                         wishlistController.addToWishlist(WishListModel(id:id ));
+//                        },
+//                         icon: const Icon(Icons.favorite_border_rounded)),
+//                      )
+//                     ]
+//                   ),
+//                    Text(itemName,style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+//                    Text(price,style: const TextStyle(fontSize: 12),),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+// import 'package:bag_bliss/src/view/details/product_details.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import '../../../../colors/colors.dart';
+
+// class ProductCard extends StatelessWidget {
+//   const ProductCard({
+//     super.key,
+//     required this.height,
+//     required this.width,
+//     required this.itemName,
+//     required this.itemImage,
+//     required this.price,
+//     required this.isFavorite,
+//   });
+
+//   final double height;
+//   final double width;
+//   final String itemName;
+//   final String itemImage;
+//   final String price;
+//   final bool isFavorite;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         Material(
+//           elevation: 50,
+//           child: InkWell(
+//             onTap: () {
+//               Get.to(const ProductDetails());
+//             },
+//             child: Container(
+//               width: width * 0.4,
+//               color: white,
+//               child: Column(
+//                 children: [
+//                   Stack(
+//                     children: [
+//                       Container(
+//                         height: height * 0.21,
+//                         width: width * 0.35,
+//                         decoration: BoxDecoration(
+//                           image: DecorationImage(
+//                             image: NetworkImage(itemImage),
+//                             fit: BoxFit.cover,
+//                           ),
+//                         ),
+//                       ),
+//                       Positioned(
+//                         right: 2,
+//                         child: IconButton(
+//                           onPressed: () {},
+//                           icon: Icon(
+//                             isFavorite
+//                                 ? Icons.favorite
+//                                 : Icons.favorite_border_rounded,
+//                             color: isFavorite ? Colors.red : null,
+//                           ),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                   Text(
+//                     itemName,
+//                     style: const TextStyle(
+//                       fontWeight: FontWeight.bold,
+//                       fontSize: 14,
+//                     ),
+//                   ),
+//                   Text(
+//                     price,
+//                     style: const TextStyle(fontSize: 12),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+
+
+//wishlist screen ///
+
+
+// import 'package:bag_bliss/src/controller/wishlist_controller.dart';
+// import 'package:bag_bliss/src/view/home/widgets/product_card.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import '../../../core/colors.dart';
+
+// final WishListController wishlistController = Get.put(WishListController());
+
+// class WishList extends StatelessWidget {
+//   const WishList({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var size = MediaQuery.of(context).size;
+//     var height = size.height;
+//     var width = size.width;
+//     return Scaffold(
+//       appBar: AppBar(
+//         iconTheme: const IconThemeData(color: white),
+//         backgroundColor: appbar,
+//         title: const Text(
+//           'WishList',
+//           style: TextStyle(color: white),
+//         ),
+//       ),
+//       body: SingleChildScrollView(
+//         child: Padding(
+//           padding: EdgeInsets.only(top: height * 0.03),
+//           child: Column(
+//             children: [
+//               SizedBox(
+//                 height: height,
+//                 child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+//                   stream: FirebaseFirestore.instance.collection('users').snapshots(),
+//                   builder: (context, snapshot) {
+//                     if (snapshot.connectionState == ConnectionState.waiting) {
+//                       return const Center(
+//                         child: CircularProgressIndicator()
+//                         );
+//                     }
+//                     else if (snapshot.hasError) {
+//             return const Center(
+//               child: Text('Error loading wishList'),
+//             );
+//           }else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+//             return const Center(child:  Text('WishList is Empty'));
+//           } else{
+//                     // if (!snapshot.hasData) {
+//                     //   return const Text('No data available.');
+                    
+//                     return GridView.builder(
+//                       physics: const NeverScrollableScrollPhysics(),
+//                       shrinkWrap: true,
+//                       itemCount: snapshot.data!.docs.length,
+//                       itemBuilder: (context, index) {
+//                         final DocumentSnapshot wishListSnap = snapshot.data!.docs[index];
+//                         return ProductCard(
+//                           height: height,
+//                           width: width,
+//                           itemName: wishListSnap['name']!,
+//                           itemImage: wishListSnap['image']!,
+//                           price: wishListSnap['price']!,
+//                           id: wishListSnap['id']!,
+//                         );
+//                       },
+//                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                         crossAxisCount: 2,
+//                         mainAxisSpacing: 1,
+//                         childAspectRatio: (.3 / .38),
+//                       ),
+//                     );
+//                   }
+//                   }
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+//  body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      //     stream: docRef.snapshots(),
+      //     builder: (context, snapshot) {
+      //       if (snapshot.connectionState == ConnectionState.waiting) {
+      //         return const Center(child: CircularProgressIndicator());
+      //       } else if (snapshot.hasError) {
+      //         return const Center(child: Text('Error loading wishList'));
+      //       } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+      //         return const Center(child: Text('WishList is Empty'));
+      //       } else {
+      //         return GridView.builder(
+      //           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      //             crossAxisCount: 2,
+      //           ),
+      //           itemCount: snapshot.data!.docs.length,
+      //           itemBuilder: (context, index) {
+      //             final DocumentSnapshot userSnap = snapshot.data!.docs[index];
+      //             final wishlistProducts = userSnap['wishlist'] as List<dynamic>;
+
+      //             return FutureBuilder<DocumentSnapshot>(
+      //               future: FirebaseFirestore.instance
+      //                   .collection('myWishList')
+      //                   .doc(wishlistProducts[index])
+      //                   .get(),
+      //               builder: (context, productSnapshot) {
+      //                 if (productSnapshot.connectionState ==
+      //                     ConnectionState.waiting) {
+      //                   return const CircularProgressIndicator();
+      //                 } else if (productSnapshot.hasError) {
+      //                   return const Text('Error loading product');
+      //                 } else if (!productSnapshot.hasData) {
+      //                   return const Text('Product not found');
+      //                 }
+
+      //                 final productData = productSnapshot.data!.data() as Map<String, dynamic>;
+
+      //                 return ProductCard(
+      //                   itemName: productData['name'] ?? '',
+      //                   itemImage: productData['image'] ?? '',
+      //                   price: productData['price'] ?? '',
+      //                   id: productSnapshot.data!.id, height: height, width: width,
+      //                 );
+      //               },
+      //             );
+      //           },
+      //         );
+      //       }
+      //     },
+      //   ),
+
+    // var currentUser = FirebaseAuth.instance.currentUser;
+    // final userRef =
+    //     FirebaseFirestore.instance.collection('users').doc(currentUser!.email);
+    // final docRef = userRef.collection('wishlist');
