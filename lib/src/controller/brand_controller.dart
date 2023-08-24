@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class CategoriesController extends GetxController {
+class BrandController extends GetxController {
   final CollectionReference productRef =
       FirebaseFirestore.instance.collection('products');
-  final RxList<Map<String, String>> categoriesList =
+  final RxList<Map<String, String>> brandList =
       RxList<Map<String, String>>();
   final RxBool isLoading = RxBool(true);
 
@@ -17,10 +17,10 @@ class CategoriesController extends GetxController {
    fetchCategories() async {
     try {
       var snapshot = await productRef.get();
-      categoriesList.assignAll(
+      brandList.assignAll(
         snapshot.docs.map((doc) => (doc.data() as Map<String, String>)).toList(),
       );
-      return categoriesList;
+      return brandList;
       // isLoading.value = false;
     } catch (error) {
       isLoading.value = false;

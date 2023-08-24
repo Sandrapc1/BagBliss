@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import '../../../../core/colors.dart';
 import '../../categories/categories.dart';
 
-class Productcategories extends StatelessWidget {
-  const Productcategories({
+class ProductcategoriesTile extends StatelessWidget {
+  const ProductcategoriesTile({
     super.key,
     required this.height,
     required this.width, 
@@ -29,10 +29,10 @@ final Stream<QuerySnapshot<Map<String, dynamic>>>? categoryStream;
        alignment: Alignment.center,
         children: [
           Container(
-           height: height*0.2,width: width*0.29,
+           height: height*0.2,width: width*0.3,
           decoration:  BoxDecoration(
              border:Border.all(color: white),
-            shape: BoxShape.circle,
+            shape: BoxShape.rectangle,
             image: DecorationImage(image: AssetImage(imagePath),fit: BoxFit.cover)
             ),
           ),

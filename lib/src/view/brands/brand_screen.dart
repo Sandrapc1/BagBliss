@@ -1,21 +1,16 @@
-// ignore_for_file: sized_box_for_whitespace
-
 import 'package:bag_bliss/core/colors.dart';
-import 'package:bag_bliss/src/view/brands/widget/brand_all.dart';
+import 'package:bag_bliss/src/controller/brand_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../home/widgets/product_card.dart';
 
-List<Map<String, String>> imagePath = [
-    {'imagePath': 'assets/images/baggit1.jpg', 'productName': 'Baggit','discripation':'Women Textured Shoulder Bag','price':'Rs:2000'},
-    {'imagePath': 'assets/images/baggit2.jpg', 'productName': 'Baggit','discripation':'Black Structured Sling Bag','price':'Rs:2350'},
-    {'imagePath': 'assets/images/baggit3.jpg', 'productName': 'Baggit','discripation':'Textured Structured Sling Bag','price':'Rs:3200'},
-    {'imagePath': 'assets/images/baggit4.jpg', 'productName': 'Baggit','discripation':'Structured Sling Bag','price':'Rs: 1500'},
-    {'imagePath': 'assets/images/MessengerBag.jpg', 'productName': 'Baggit','discripation':'Brown Structured Shoulder Bag','price':'Rs:2500'},
-    //  {'imagePath': 'assets/images/catgr3.jpg', 'productName': 'Tote Bag'},
-  ];
 
+final BrandController brandController=Get.put(BrandController());
 class BrandScreen extends StatelessWidget {
-  const BrandScreen({super.key});
-
+  const BrandScreen({super.key,required this.brandStream, required this.brandName, });
+  final Stream<QuerySnapshot<Map<String, dynamic>>>? brandStream;
+ final  String brandName;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -25,36 +20,58 @@ class BrandScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: appbar,
         iconTheme: const IconThemeData(color: white),
-        title: const Text('Baggit',style: TextStyle(color: white),),
+        title:Text(brandName,style: const TextStyle(color: white)),
+        // title: const Text('Baggit',style: TextStyle(color: white),),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding:  EdgeInsets.only(top: height*0.03),
-          child: Column(
-           children: [
-             Container(
-                    height: height,
-                    child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: imagePath.length,
-                      itemBuilder: (context, index) {
-                        return ProductsScreen(height: height, width: width, 
-                      itemImage: imagePath[index]['imagePath']!, 
-                      itemName: imagePath[index]['productName']!, 
-                      discripation: imagePath[index]['discripation']!,
-                      price: imagePath[index]['price']!,
-                      );}, 
-                      gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, 
-                      //  crossAxisSpacing: 0,
-                       mainAxisSpacing: 1, 
-                       childAspectRatio: (.3/.38)
-                       ),
-                    ),
-             )
-           ], 
-          ),
+          child: StreamBuilder(
+            stream: brandStream,
+            builder: (context, snapshot) {
+              // print('------------${snapshot.data!.docs}');
+           
+                if (!snapshot.hasData) {
+                return  SizedBox(
+                  height: height,
+                  width: width,
+                  child: const Center(child: Text('Nothing Found')));
+              }
+              if (snapshot.hasData) {
+                return GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    final DocumentSnapshot productsnapshot =
+                            snapshot.data!.docs[index];
+                    return ProductCard(
+                        height: height,
+                        width: width,
+                        itemName: productsnapshot['name'],
+                        itemImage:  productsnapshot['image'][0],
+                        price: productsnapshot['price'],
+                        id: productsnapshot['id'],
+                        brand: productsnapshot['brand'],
+                        quantity: productsnapshot['quantity'],
+                        description: productsnapshot['description'],
+                        category: productsnapshot['category']);
+                  },
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          //  crossAxisSpacing: 0,
+                          mainAxisSpacing: 1,
+                          childAspectRatio: (.3 / .38)),
+                );
+              }
+             
+              if (snapshot.hasError) {
+                return const Center(child: Text('Error'));
+              }
+             
+              return const Center(child: CircularProgressIndicator());
+            }),
         ),
       )
     );

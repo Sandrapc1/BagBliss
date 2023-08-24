@@ -40,7 +40,12 @@ class HomeScreen extends StatelessWidget {
     'assets/images/h&m.jpg',
     'assets/images/saint.jpg',
   ];
-
+ List brandsList = [
+   'Baggit',
+   'Allen Solly',
+   'H&M',
+   'Saint Laurent'
+  ];
   @override
   Widget build(BuildContext context) {
     final CollectionReference product =
@@ -127,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                   // SizedBox(height: height * 0.01),
                   SizedBox(
                     height: height * 0.2,
-                    width: width * 0.9,
+                    width: width ,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: imagePath.length,
@@ -136,10 +141,10 @@ class HomeScreen extends StatelessWidget {
                           height: height,
                           width: width,
                           imagePath: imagePath[index]['imagePath']!,
-                          productName: imagePath[index]['productName']!,
+                          categoryName: imagePath[index]['productName']!,
                           categoryStream: FirebaseFirestore.instance
                               .collection('products')
-                              .where('category', isEqualTo: 'bag')
+                              .where('category', isEqualTo: imagePath[index]['productName']!)
                               .snapshots(),
                         );
                       },
@@ -166,20 +171,22 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: height * 0.02),
                   SizedBox(
                     height: height * 0.1,
-                    // width: width*0.09,
+                    width: width,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
+                      itemCount: brandsImage.length,
                       itemBuilder: (context, index) {
-                        return Brandproducts(
-                          height: height,
-                          width: width,
-                          brandsImage: brandsImage[index],
+                        return Brandproducts(height: height, 
+                        width: width, 
+                        brandsImage: brandsImage[index], 
+                        brandStream: FirebaseFirestore.instance.collection('products')
+                        .where('brand',isEqualTo: brandsList[index]
+                        ).snapshots(), brandName: brandsList[index],
                         );
                       },
                       separatorBuilder: (context, index) {
-                        return SizedBox(width: width * 0.02);
+                        return SizedBox(width: width * 0.05);
                       },
-                      itemCount: brandsImage.length,
                     ),
                   ),
                   SizedBox(
