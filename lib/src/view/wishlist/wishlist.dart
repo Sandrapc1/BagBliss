@@ -60,10 +60,14 @@ class WishList extends StatelessWidget {
                           return ProductCard(
                             height: height,
                             width: width,
-                            itemImage: product['image'][0]!,
-                            itemName: product['name']!,
-                            price: product['price']!,
+                            itemImage: product['image'][0],
+                            itemName: product['name'],
+                            price: product['price'],
                             id: product['id'],
+                             brand: product['brand'], 
+                             quantity:product['quantity'], 
+                             description: product['description'], 
+                             category: product['category'],
                           );
                         }
                       });

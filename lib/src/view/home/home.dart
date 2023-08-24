@@ -11,8 +11,6 @@ import 'widgets/product_card.dart';
 import 'widgets/brand_products.dart';
 import 'widgets/categories_product.dart';
 
-
-
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key});
 
@@ -87,7 +85,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(width: 3),
           IconButton(
             onPressed: () {
-              Get.to( CartScreen());
+              Get.to(CartScreen());
             },
             icon: const Icon(
               Icons.shopping_cart_rounded,
@@ -139,6 +137,10 @@ class HomeScreen extends StatelessWidget {
                           width: width,
                           imagePath: imagePath[index]['imagePath']!,
                           productName: imagePath[index]['productName']!,
+                          categoryStream: FirebaseFirestore.instance
+                              .collection('products')
+                              .where('category', isEqualTo: 'bag')
+                              .snapshots(),
                         );
                       },
                       separatorBuilder: (context, index) {
@@ -199,8 +201,10 @@ class HomeScreen extends StatelessWidget {
                   Container(
                     height: height,
                     child: StreamBuilder(
-                        stream: FirebaseFirestore.instance.collection('products').snapshots(),
-                        builder: (context,  snapshot) {
+                        stream: FirebaseFirestore.instance
+                            .collection('products')
+                            .snapshots(),
+                        builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return GridView.builder(
                                 physics: const NeverScrollableScrollPhysics(),
@@ -214,8 +218,12 @@ class HomeScreen extends StatelessWidget {
                                     width: width,
                                     itemImage: productsnapshot['image'][0]!,
                                     itemName: productsnapshot['name']!,
-                                    price: productsnapshot['price']!, 
+                                    price: productsnapshot['price']!,
                                     id: productsnapshot['id'],
+                                    brand: productsnapshot['brand'],
+                                    quantity: productsnapshot['quantity'],
+                                    description: productsnapshot['description'],
+                                    category: productsnapshot['category'],
                                   );
                                 },
                                 gridDelegate:

@@ -13,7 +13,7 @@ class AppPage {
 static List<GetPage> routes=[
 GetPage(name: bottamsheet, page: () =>  const BottamSheet()),
 GetPage(name: Home, page: () =>  HomeScreen()),
-GetPage(name: Categories, page: () =>  CategoriesScreen(),),
+// GetPage(name: Categories, page: () =>  CategoriesScreen(),),
 GetPage(name: Wishlist, page: () => const WishList(),),
 GetPage(name: Account, page: () => const Profile(),)
 ];

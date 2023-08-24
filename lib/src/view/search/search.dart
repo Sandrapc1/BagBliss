@@ -86,7 +86,11 @@ class SearchScreen extends StatelessWidget {
                           itemName:searchController.searchResult[index]['name'] ,
                         itemImage:searchController.searchResult[index]['image'][0] ,
                         price: searchController.searchResult[index]['price'],
-                         id: searchController.searchResult[index]['id'],
+                         id: searchController.searchResult[index]['id'], 
+                         brand: searchController.searchResult[index]['brand'],
+                          quantity: searchController.searchResult[index]['quantity'], 
+                          description: searchController.searchResult[index]['description'], 
+                          category: searchController.searchResult[index]['category'],
                         );
                       },
                       gridDelegate:

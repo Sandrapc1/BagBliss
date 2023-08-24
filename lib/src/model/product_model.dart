@@ -7,8 +7,11 @@ class ProductDetails {
   final String? description;
   final String? image;
   final String? brand;
+  final String? id;
 
-  ProductDetails( {
+  ProductDetails(
+     {
+      this.id, 
     this.name,
     this.category,
     this.quantity,

@@ -1,27 +1,22 @@
 import 'package:bag_bliss/src/controller/cart_controller.dart';
-import 'package:bag_bliss/src/model/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/colors.dart';
 
 
 
-class Body extends StatelessWidget {
+class CardTile extends StatelessWidget {
 
   final cartcontroller=Get.put( CartController());
 
-   Body({
+   CardTile({
     super.key,
-    required this.height,
-    required this.width, 
     required this.id, 
     required this.price, 
     required this.totalprice, 
     required this.count,
   });
 
-  final double height;
-  final double width;
   final String id;
   final int price;
   final int totalprice;
@@ -30,6 +25,9 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     var size = MediaQuery.of(context).size;
+    var height = size.height;
+    var width = size.width;
     return Container(
       height:height*0.12,
       width: width*0.93,
@@ -58,7 +56,7 @@ class Body extends StatelessWidget {
              children: [
                const Text('Rs 1500',style: TextStyle(fontWeight: FontWeight.bold),),
                SizedBox(width: width*0.09),
-                IconButton(icon:Icon( Icons.remove_circle,color: black,) ,onPressed:() {
+                IconButton(icon:const Icon( Icons.remove_circle,color: black,) ,onPressed:() {
                 //  cartcontroller.addToCart(CartModel.products[index]);
                }, ),
                SizedBox(width: width*0.028),

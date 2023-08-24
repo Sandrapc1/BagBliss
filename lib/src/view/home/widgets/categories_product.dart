@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/colors.dart';
@@ -9,19 +10,19 @@ class Productcategories extends StatelessWidget {
     required this.height,
     required this.width, 
     required this.imagePath, 
-    required this.productName,
+    required this.productName, required this.categoryStream,
   });
 
   final double height;
   final double width;
   final String imagePath;
   final String productName;
-
+final Stream<QuerySnapshot<Map<String, dynamic>>>? categoryStream;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to( CategoriesScreen());
+        Get.to( CategoriesScreen(categoryStream:categoryStream ,));
       },
       child: Stack(
        alignment: Alignment.center,

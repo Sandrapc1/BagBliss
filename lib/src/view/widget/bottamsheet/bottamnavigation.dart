@@ -24,7 +24,7 @@ class BottamSheet extends StatelessWidget {
             index: controller.tabIndex,
            children:  [
             HomeScreen(),
-             CategoriesScreen(),
+            //  CategoriesScreen(categoryStream: null,),
             const WishList(),
             const Profile()  
            ],

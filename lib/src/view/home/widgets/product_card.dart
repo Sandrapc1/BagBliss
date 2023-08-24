@@ -1,7 +1,8 @@
+import 'package:bag_bliss/src/model/product_model.dart';
+import 'package:bag_bliss/src/view/details/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/wishlist_controller.dart';
-import '../../../model/product_model.dart';
 import '../../../model/wishlist_models.dart';
 
 final WishListController wishlistController = Get.put(WishListController());
@@ -15,6 +16,10 @@ class ProductCard extends StatelessWidget {
     required this.itemImage,
     required this.price,
     required this.id,
+    required this.brand,
+    required this.quantity,
+     required this.description, 
+     required this.category,
   }) : super(key: key);
 
   final double height;
@@ -23,6 +28,10 @@ class ProductCard extends StatelessWidget {
   final String itemImage;
   final String price;
   final String id;
+  final String brand;
+  final String quantity;
+  final String description;
+  final String category;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +41,18 @@ class ProductCard extends StatelessWidget {
           elevation: 5,
           child: InkWell(
             onTap: () {
-              Get.to(ProductDetails());
+              Get.to(ProductDetailsScreen(
+                item: ProductDetails(
+                    image: itemImage,
+                    price: price,
+                    name: itemName,
+                    brand: brand,
+                    quantity: quantity,
+                    id: id,
+                    description: description,
+                    category: category
+                    ),
+              ));
             },
             child: Container(
               width: width * 0.4,
@@ -64,7 +84,7 @@ class ProductCard extends StatelessWidget {
                             icon: Icon(
                               Icons.favorite_border_rounded,
                               color:
-                                  isItemInWishlist ? Colors.red : Colors.white,
+                                  isItemInWishlist ? Colors.red : Colors.black,
                             ),
                           );
                         }),
