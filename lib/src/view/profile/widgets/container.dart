@@ -18,7 +18,7 @@ final Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height*0.06,
+      height: height*0.05,
       width: width*0.7,
       decoration: BoxDecoration(
            borderRadius: BorderRadius.circular(25),

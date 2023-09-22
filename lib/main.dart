@@ -1,5 +1,7 @@
 import 'package:bag_bliss/core/colors.dart';
+import 'package:bag_bliss/core/size.dart';
 import 'package:bag_bliss/firebase_options.dart';
+import 'package:bag_bliss/src/controller/theme_controller.dart';
 import 'package:bag_bliss/src/view/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +14,19 @@ Future<void> main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   MyApp({super.key});
+
+final ThemeController themeController=Get.put(ThemeController());
+
+
   @override
   Widget build(BuildContext context) {
+    kheight=MediaQuery.sizeOf(context).height;
+    kwidth=MediaQuery.of(context).size.width;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Bag Bliss',
@@ -28,15 +36,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor:appbar),
         useMaterial3: true,
         
-      ),
-      // Get.changeTheme(
-      //     Get.isDarkMode ? ThemeData.light() : ThemeData.dark(),
-      //     );
+      ),  
       home:  const Splash(),
+      //  theme: ThemeData.light(),
+      // darkTheme: ThemeData.dark(),
+      // themeMode: ThemeMode.system,
     );
   }
 }
-
-
 
 

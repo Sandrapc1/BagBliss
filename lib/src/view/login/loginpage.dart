@@ -163,7 +163,7 @@ class LoginPage extends StatelessWidget {
                           onTap: () {
                             Get.to( const ResetPassword());
                           },
-                          child: const Text('Forgot Password?')),
+                          child: const Text('Forgot Password?',style: TextStyle(fontSize: 10),)),
                       ),
                       SizedBox(height: height * 0.02),
                       TextButton(

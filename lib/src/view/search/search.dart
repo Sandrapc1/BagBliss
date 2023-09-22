@@ -5,6 +5,7 @@ import 'package:bag_bliss/core/colors.dart';
 import 'package:bag_bliss/src/view/home/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import '../../controller/search_controller.dart';
 // import 'search_controller.dart';
 
@@ -70,7 +71,11 @@ class SearchScreen extends StatelessWidget {
               if (searchResults.isEmpty) {
                 return Container(
                   height: height*0.6,
-                  child: const Center(child: Text('No results found.')));
+                  child:  
+                  Center(
+                    child:Lottie.asset('assets/lottie/animation_lmbxu3hl.json',height: height*0.6,width:width*0.6)
+                    )
+                  );
               }
 
               return Container(

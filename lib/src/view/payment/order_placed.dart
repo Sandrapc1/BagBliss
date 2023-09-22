@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:bag_bliss/src/view/home/home.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class OrderPlaced extends StatelessWidget {
   const OrderPlaced({super.key});
@@ -10,14 +14,28 @@ class OrderPlaced extends StatelessWidget {
     var width = size.width;
     return  Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(left: width * 0.35, top: height * 0.45),
-        child: const Column(
+        padding: EdgeInsets.only(left: width * 0.25, top: height * 0.08),
+        child:  Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('PLACE ORDER',style: TextStyle(color: Colors.green,fontSize: 20),)
-        // Get.snackbar('', 'PLACE ORDER')        
+           Lottie.asset('assets/lottie/animation_lmc142c2.json',height: height*0.5,width:width*0.5,
+           onLoaded: (p0) => wait(context),
+           )  ,
         ],
         ),
       ),
     );
+             
+  }
+
+  wait( BuildContext context){
+    Timer(
+    const  Duration(
+        milliseconds: 3000
+      ), () {
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeScreen()), 
+        (route) => false);
+       });
   }
 }

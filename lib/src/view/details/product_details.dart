@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'widgets/detail_tile.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen({super.key,required this.item});
+  const ProductDetailsScreen({super.key,required this.item, required this.id});
 final ProductDetails item;
+final String id;
   @override
   Widget build(BuildContext context) {
      var size = MediaQuery.of(context).size;
@@ -15,7 +16,7 @@ final ProductDetails item;
     return Scaffold(
       backgroundColor: appbar,
       appBar: buildAppBar(width),
-      body:  DetailstTile(items: item),
+      body:  DetailstTile(items: item,id: id ),
     );
   }
 

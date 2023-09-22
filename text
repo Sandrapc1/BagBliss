@@ -408,3 +408,281 @@
     // final userRef =
     //     FirebaseFirestore.instance.collection('users').doc(currentUser!.email);
     // final docRef = userRef.collection('wishlist');
+    
+
+
+// class WishList extends StatelessWidget {
+//   const WishList({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     var size = MediaQuery.of(context).size;
+//     var height = size.height;
+//     var width = size.width;
+//     log(wishcontroller.existingProduct.toString());
+//     return Scaffold(
+//       appBar: AppBar(
+//         iconTheme: const IconThemeData(color: white),
+//         backgroundColor: appbar,
+//         title: const Text(
+//           'WishList',
+//           style: TextStyle(color: white),
+//         ),
+//       ),
+//       body: Obx(() => SingleChildScrollView(
+//         child: Padding(
+//           padding: const EdgeInsets.all(17.0),
+//           child: GridView.builder(
+//                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                   crossAxisCount: 2,
+//               mainAxisSpacing: 2,
+//               crossAxisSpacing: 1,
+//               childAspectRatio: (.3/ .37)
+//                     ),
+//                     shrinkWrap: true,
+//                     physics:const NeverScrollableScrollPhysics() ,
+//                 itemCount: wishcontroller.existingProduct.length,
+//                 itemBuilder: (context, index) {
+//                   return StreamBuilder(
+//                       stream: FirebaseFirestore.instance
+//                           .collection('products')
+//                           .snapshots(),
+//                       builder: (context, snapshot) {
+//                         if (snapshot.connectionState == ConnectionState.waiting) {
+//                           return const CircularProgressIndicator();
+//                         } else if (snapshot.hasError) {
+//                           return const Text('Error loading product');
+//                         } else if (!snapshot.hasData) {
+//                           return const Text('Product not found');
+//                         } else {
+//                           var products = snapshot.data!.docs.toList();
+//                           var product = products.firstWhere((element) =>
+//                               element.id == wishcontroller.existingProduct[index]);
+                            
+//                           return ProductCard(
+//                             height: height,
+//                             width: width,
+//                             itemImage: product['image'][0],
+//                             itemName: product['name'],
+//                             price: product['price'],
+//                             id: product['id'],
+//                              brand: product['brand'], 
+//                              quantity:product['quantity'], 
+//                              description: product['description'], 
+//                              category: product['category'],
+//                           );
+//                         }
+//                       });
+//                 },
+//               ),
+//         ),
+//       )),
+//     );
+//   }
+// }
+
+
+//cart screen
+
+// class CartScreen extends StatelessWidget {
+//   final CartController cartController = Get.put(CartController());
+//   CartScreen({
+//     super.key,
+//   });
+//   @override
+//   Widget build(BuildContext context) {
+//     var size = MediaQuery.of(context).size;
+//     var height = size.height;
+//     var width = size.width;
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: appbar,
+//         iconTheme: const IconThemeData(color: white),
+//         title: const Text(
+//           'Shopping Cart',
+//           style: TextStyle(color: white),
+//         ),
+//       ),
+//       body: StreamBuilder(
+//         stream: FirebaseFirestore.instance
+//             .collection('users')
+//             .doc(FirebaseAuth.instance.currentUser?.email)
+//             .collection('cart')
+//             .snapshots(),
+//         builder: (context, snapshot) {
+//           if (snapshot.connectionState == ConnectionState.waiting) {
+//             return const Center(child: CircularProgressIndicator());
+//           }
+//           if (snapshot.hasData) {
+//             return ListView.separated(
+//               itemCount: snapshot.data!.docs.length,
+//               itemBuilder: (BuildContext context, int index) {
+//                 return CardTile(
+//                     id: snapshot.data!.docs[index]['id'],
+//                     price: snapshot.data!.docs[index]['price'],
+//                     totalprice: snapshot.data!.docs[index]['totalprice'],
+//                     count: snapshot.data!.docs[index]['count']);
+//               },
+//               separatorBuilder: (BuildContext context, int index) {
+//                 return SizedBox(height: height * 0.02);
+//               },
+//             );
+//           }
+//           return const SizedBox();
+//         },
+//       ),
+//       bottomNavigationBar: Padding(
+//           padding: const EdgeInsets.all(16),
+//           child: Obx(() => Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(
+//                     'Total: ₹${cartController.cartTotal.value.toStringAsFixed(2)}',
+//                   ),
+//                   Container(
+//                     height: height * 0.05,
+//                     width: width * 0.45,
+//                     decoration: BoxDecoration(
+//                       borderRadius: BorderRadius.circular(5),
+//                       color: appbar,
+//                     ),
+//                     child: InkWell(
+//                       onTap: () {
+//                         // Add code for checkout here
+//                       },
+//                       child: const Center(
+//                         child: Text(
+//                           'CHECKOUT',
+//                           style: TextStyle(color: white, fontSize: 16),
+//                         ),
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ))),
+//     );
+//   }
+// }
+// return Container(
+                              //     height: height * 0.1,
+                              //     width: width * 0.5,
+                              //     decoration: BoxDecoration(
+                              //         border: Border.all(color: appbar),
+                              //         borderRadius: BorderRadius.circular(7)),
+                              //     child: Row(
+                              //       children: [
+                              //         SizedBox(width: width * 0.02),
+                              //         const Image(
+                              //             image: AssetImage(
+                              //                 'assets/images/MessengerBag.jpg')),
+                              //         Column(
+                              //           crossAxisAlignment:
+                              //               CrossAxisAlignment.start,
+                              //           mainAxisAlignment:
+                              //               MainAxisAlignment.start,
+                              //           children: [
+                              //             SizedBox(height: height * 0.02),
+                              //             Text(
+                              //               productData[index]['id'],
+                              //               // 'Messanger Bag',
+                              //               style: const TextStyle(
+                              //                   fontSize: 11,
+                              //                   fontWeight: FontWeight.bold),
+                              //             ),
+                              //             const Text(
+                              //               'Off-White Quilted Handheld Bag',
+                              //               style: TextStyle(
+                              //                 fontSize: 10,
+                              //                 color: boxcolorstock,
+                              //               ),
+                              //             ),
+                              //             Text(
+                              //               productData[index]['price']
+                              //                   .toString(),
+                              //               style: const TextStyle(
+                              //                   color: appbar, fontSize: 12),
+                              //             ),
+                              //           ],
+                              //         ),
+                              //       ],
+                              //     )
+                              //     );
+
+
+
+// IconButton
+  // Row(
+                          //   children: [
+                          //     Container(
+                          //       height: height * 0.04,
+                          //       width: width * 0.1,
+                          //       // color: black,
+                          //       decoration: BoxDecoration(
+                          //           color: boxcolorfill,
+                          //           shape: BoxShape.circle,
+                          //           border: Border.all(color: appbar)),
+                          //       child: const Center(
+                          //           child: Text(
+                          //         'M',
+                          //         style: TextStyle(fontWeight: FontWeight.bold),
+                          //       )),
+                          //     ),
+                          //     SizedBox(width: width * 0.02),
+                          //     Container(
+                          //       height: height * 0.04,
+                          //       width: width * 0.1,
+                          //       // color: black,
+                          //       decoration: BoxDecoration(
+                          //           color: boxcolorfill,
+                          //           shape: BoxShape.circle,
+                          //           border: Border.all(color: appbar)),
+                          //       child: const Center(
+                          //           child: Text(
+                          //         'S',
+                          //         style: TextStyle(fontWeight: FontWeight.bold),
+                          //       )),
+                          //     ),
+                          //     SizedBox(width: width * 0.02),
+                          //     Container(
+                          //       height: height * 0.04,
+                          //       width: width * 0.1,
+                          //       // color: black,
+                          //       decoration: BoxDecoration(
+                          //           color: boxcolorfill,
+                          //           shape: BoxShape.circle,
+                          //           border: Border.all(color: appbar)),
+                          //       child: const Center(
+                          //           child: Text(
+                          //         'L',
+                          //         style: TextStyle(fontWeight: FontWeight.bold),
+                          //       )),
+                          //     ),
+                          //   ],
+                          // ),
+
+
+
+
+                          //  firebase delete
+                          
+  // Future<void> deleteAddress(String id) async{
+  // if (user!=null) {
+  //   final userRef=FirebaseFirestore.instance.collection('users').doc(user?.email);
+  //   final  addressRef=userRef.collection('address');
+  //   await addressRef.doc(id).delete();
+  //   loadAddresses();
+  // }
+  // }
+ 
+
+
+//  firebase add
+  // await addressRef.add({
+      //   'id': address.id,
+      //   'name': address.name,
+      //   'address': address.address,
+      //   'phone': address.phone,
+      //   'state': address.state,
+      //   'city': address.city,
+      //   'pincode': address.pincode,
+      // });

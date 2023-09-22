@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:bag_bliss/core/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -26,12 +27,15 @@ class WishListController extends GetxController {
           if (existingProduct.contains(products.id)) {
             existingProduct.remove(products.id);
             Get.snackbar('Removed from wishlist', '',
-                colorText: Colors.red, duration: const Duration(seconds: 1),
+            backgroundColor: red,
+                colorText: white, duration: const Duration(seconds: 1),
                 // snackPosition: SnackPosition.BOTTOM
                 );
           } else {
             existingProduct.add(products.id!);
             Get.snackbar('Added to wishlist ❤️', '',
+            backgroundColor: Colors.green,
+            colorText: white,
                 duration: const Duration(seconds: 1),
                 );
           }

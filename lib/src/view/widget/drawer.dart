@@ -1,16 +1,17 @@
-// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, must_be_immutable
 import 'dart:io';
-
 import 'package:bag_bliss/core/colors.dart';
-import 'package:bag_bliss/src/view/login/loginpage.dart';
+import 'package:bag_bliss/src/controller/theme_controller.dart';
+// import 'package:bag_bliss/src/view/login/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../authentication/auth.dart';
+import 'package:share_plus/share_plus.dart';
+// import '../../../authentication/auth.dart';
 
 class DrawerBar extends StatelessWidget {
-  const DrawerBar({super.key});
-
+   DrawerBar({super.key});
+  final ThemeController themeController=Get.put(ThemeController());
+ var isDarkMode=false;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -51,15 +52,34 @@ class DrawerBar extends StatelessWidget {
                 ),
               ),
                ListTile(
-                onTap: () {},
-                title: const Text('Theme', style: TextStyle(color: black)),
-                leading: const Icon(
-                  Icons.color_lens_rounded,
-                  color: black,
+              onTap: () {},
+              title: const Text('Theme', style: TextStyle(color: Colors.black)),
+              leading: Obx(
+                () => Switch(
+                  value: themeController.isDarkMode.value,
+                  onChanged: (state) {
+                    themeController.toggleTheme();
+                  },
                 ),
               ),
+            ),
+              //  ListTile(
+              //   onTap: () {},
+              //   title: const Text('Theme', style: TextStyle(color: black)),
+              //   leading: Switch(value: isDarkMode,
+              //    onChanged: (state) {
+              //      themeController.changeTheme(state);
+              //    },)
+                
+              //   //  const Icon(
+              //   //   Icons.color_lens_rounded,
+              //   //   color: black,
+              //   // ),
+              // ),
                ListTile(
-                onTap: () {},
+                onTap: () {
+                  Share.share('https://github.com/Sandrapc1/BagBliss');
+                },
                 title: const Text('Share', style: TextStyle(color: black)),
                 leading: const Icon(
                   Icons.share,

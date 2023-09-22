@@ -1,3 +1,6 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
+import 'package:bag_bliss/core/colors.dart';
 import 'package:bag_bliss/src/model/product_model.dart';
 import 'package:bag_bliss/src/view/details/product_details.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +54,7 @@ class ProductCard extends StatelessWidget {
                     id: id,
                     description: description,
                     category: category
-                    ),
+                    ), id: id,
               ));
             },
             child: Container(
@@ -62,8 +65,9 @@ class ProductCard extends StatelessWidget {
                   Stack(
                     children: [
                       Container(
-                        height: height * 0.21,
+                        height: height * 0.16,
                         width: width * 0.35,
+                        // color: red,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage(itemImage),
@@ -95,13 +99,15 @@ class ProductCard extends StatelessWidget {
                     itemName,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 17,
                     ),
                   ),
-                  Text(
-                    price,
-                    style: const TextStyle(fontSize: 12),
+                  //  SizedBox(height: height*0.01),
+                  Text('₹ ${price}'
+                    ,
+                    style: const TextStyle(fontSize: 14,color: appbar),
                   ),
+                  SizedBox(height: height*0.01),
                 ],
               ),
             ),

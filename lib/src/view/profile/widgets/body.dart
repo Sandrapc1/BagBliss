@@ -1,9 +1,9 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables
 import 'dart:io';
 import 'package:bag_bliss/core/colors.dart';
 import 'package:bag_bliss/src/view/cart/cart.dart';
 import 'package:bag_bliss/src/view/orders/order_screen.dart';
-import 'package:bag_bliss/src/view/address/address.dart';
+import 'package:bag_bliss/src/view/address/address_screen.dart';
 import 'package:bag_bliss/src/controller/profile_controller.dart';
 import 'package:bag_bliss/src/view/profile/edit.dart';
 import 'package:bag_bliss/src/view/wishlist/wishlist.dart';
@@ -16,8 +16,9 @@ import 'container.dart';
 
 
 class ProfileBody extends StatelessWidget {
-  ProfileBody({Key? key}) : super(key: key);
-
+  ProfileBody({Key? key,required this.addressData,required this.addressId}) : super(key: key);
+  final addressData;
+  final addressId;
   final ProfileController profileControll = Get.put(ProfileController());
   
   @override
@@ -64,7 +65,7 @@ class ProfileBody extends StatelessWidget {
                 SizedBox(height: height*0.03),
                 Containers(height: height, width: width, 
                 head: 'Address', 
-                icons: Icons.location_on, onTap: () { Get.to(const AddressScreen()); },),
+                icons: Icons.location_on, onTap: () { Get.to( AddressScreen(addressdata:addressData, addressId: addressId)); },),
                  SizedBox(height: height*0.03),
                 Containers(height: height, width: width, 
                 head: 'WishList', 
@@ -75,7 +76,7 @@ class ProfileBody extends StatelessWidget {
                 icons: Icons.shopping_cart_rounded, onTap: () { Get.to( CartScreen()); },),
                  SizedBox(height: height*0.05),
                  Container(   
-                  height: height*0.05,
+                  height: height*0.04,
                   width: width*0.4,
                  decoration: BoxDecoration(
                borderRadius: BorderRadius.circular(25),
