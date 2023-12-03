@@ -98,9 +98,9 @@ class ProfileBody extends StatelessWidget {
                   backgroundColor: white,
                   onCancel: () {},
                   onConfirm: () {
-                GoogleFirebase().signOut().then((value) {
-                  // GetPage(name: , page: page)
-               Get.off(LoginPage());
+                  GoogleFirebase().signOut().then((value) {
+                    // GetPage(name: , page: page)
+                Get.off(LoginPage());
                 }); },
                   buttonColor: Colors.red
                 );

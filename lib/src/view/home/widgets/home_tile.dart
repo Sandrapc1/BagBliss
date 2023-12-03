@@ -17,9 +17,7 @@ List<Map<String, String>> imagePath = [
   {'imagePath': 'assets/images/catgr3.jpg', 'productName': 'Tote Bag'},
   {'imagePath': 'assets/images/cart3.jpg', 'productName': 'Shoulder Bag'},
   {'imagePath': 'assets/images/Clutch2.jpg', 'productName': 'Clutches Bag'},
-  {
-    'imagePath': 'assets/images/MessengerBag.jpg',
-    'productName': 'Messengerr Bag'
+  {'imagePath': 'assets/images/MessengerBag.jpg','productName': 'Messengerr Bag'
   },
 ];
 List brandsImage = [

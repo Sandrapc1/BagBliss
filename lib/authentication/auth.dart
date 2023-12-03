@@ -1,6 +1,5 @@
 
 // ignore_for_file: avoid_print, use_rethrow_when_possible
-
 // import 'dart:ffi';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';

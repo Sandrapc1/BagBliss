@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bag_bliss/src/view/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

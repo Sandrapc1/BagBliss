@@ -1,9 +1,11 @@
-import 'package:bag_bliss/src/controller/order_controller.dart';
-import 'package:bag_bliss/src/model/order_model.dart';
+// import 'package:bag_bliss/src/controller/order_controller.dart';
+// import 'package:bag_bliss/src/model/order_model.dart';
 import 'package:bag_bliss/src/view/orders/track_order.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../core/colors.dart';
+import '../../../controller/order_controller.dart';
+import '../../../model/order_model.dart';
 
 class OrderTile extends StatelessWidget {
    OrderTile({

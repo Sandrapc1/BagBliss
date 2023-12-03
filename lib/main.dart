@@ -38,9 +38,6 @@ final ThemeController themeController=Get.put(ThemeController());
         
       ),  
       home:  const Splash(),
-      //  theme: ThemeData.light(),
-      // darkTheme: ThemeData.dark(),
-      // themeMode: ThemeMode.system,
     );
   }
 }

@@ -13,4 +13,6 @@ class CartModel {
     required this.quantity,
     required this.count,
   });
+
+  // static CartModel fromMap({required data}) {}
 }

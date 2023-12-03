@@ -17,4 +17,6 @@ class AddressModel {
     required this.pincode, String? addressType
   });
 
+  // static Map fromData({required Map data}) {}
+
 }
